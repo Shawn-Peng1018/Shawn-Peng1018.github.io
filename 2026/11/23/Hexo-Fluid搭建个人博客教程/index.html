@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Shawn Peng">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言一直想拥有一个自己的博客，用来记录学习、生活和项目经验。经过一段时间的摸索以及ai的帮助，我用 Hexo、Fluid 和 GitHub Pages 搭建并发布了自己的博客。 本文记录 Windows 环境下从准备工具、创建 GitHub 仓库，到安装 Hexo、配置 Fluid、绑定域名和发布文章的过程。命令在 CMD 或 PowerShell 中运行；修改配置文件时使用记事本或 VS Cod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo + Fluid 搭建个人博客教程">
+<meta property="og:url" content="https://shawnpeng.top/2026/11/23/Hexo-Fluid%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Shawn Peng 的博客">
+<meta property="og:description" content="前言一直想拥有一个自己的博客，用来记录学习、生活和项目经验。经过一段时间的摸索以及ai的帮助，我用 Hexo、Fluid 和 GitHub Pages 搭建并发布了自己的博客。 本文记录 Windows 环境下从准备工具、创建 GitHub 仓库，到安装 Hexo、配置 Fluid、绑定域名和发布文章的过程。命令在 CMD 或 PowerShell 中运行；修改配置文件时使用记事本或 VS Cod">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-23T14:11:54.326Z">
+<meta property="article:modified_time" content="2026-11-23T14:35:38.752Z">
+<meta property="article:author" content="Shawn Peng">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Fluid">
+<meta property="article:tag" content="GitHub Pages">
+<meta property="article:tag" content="博客blog搭建">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Hexo + Fluid 搭建个人博客教程 - Shawn Peng 的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"shawnpeng.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Shawn Peng的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hexo + Fluid 搭建个人博客教程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-11-23 22:11" pubdate>
+          2026年11月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Hexo + Fluid 搭建个人博客教程</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直想拥有一个自己的博客，用来记录学习、生活和项目经验。经过一段时间的摸索以及ai的帮助，我用 Hexo、Fluid 和 GitHub Pages 搭建并发布了自己的博客。</p>
+<p>本文记录 Windows 环境下从准备工具、创建 GitHub 仓库，到安装 Hexo、配置 Fluid、绑定域名和发布文章的过程。命令在 <strong>CMD 或 PowerShell</strong> 中运行；修改配置文件时使用记事本或 VS Code。</p>
+<blockquote>
+<p><strong>我的博客：</strong> <a href="https://shawnpeng.top/">https://shawnpeng.top</a></p>
+</blockquote>
+<h2 id="一、准备工具"><a href="#一、准备工具" class="headerlink" title="一、准备工具"></a>一、准备工具</h2><p>需要准备：GitHub 账号、Node.js&#x2F;npm、Git、Hexo CLI，以及一个 GitHub Pages 仓库。自定义域名是可选项。</p>
+<h3 id="1-安装-Node-js"><a href="#1-安装-Node-js" class="headerlink" title="1. 安装 Node.js"></a>1. 安装 Node.js</h3><p>浏览器打开 <a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js 官网</a>，下载并安装 LTS 版本。安装后打开 <strong>CMD 或 PowerShell</strong>，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">node -v<br>npm -v<br></code></pre></td></tr></table></figure>
+
+<p>如果能看到版本号，说明安装成功。</p>
+<h3 id="2-安装-Git"><a href="#2-安装-Git" class="headerlink" title="2. 安装 Git"></a>2. 安装 Git</h3><p>浏览器打开 <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git 官网</a>，下载并安装 Windows 版本。安装后打开新的 <strong>CMD 或 PowerShell</strong>，输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git --version<br></code></pre></td></tr></table></figure>
+
+<h2 id="二、创建-GitHub-Pages-仓库"><a href="#二、创建-GitHub-Pages-仓库" class="headerlink" title="二、创建 GitHub Pages 仓库"></a>二、创建 GitHub Pages 仓库</h2><ol>
+<li>浏览器登录 <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>，点击右上角 <code>+</code>，选择 <strong>New repository</strong>。</li>
+<li>仓库名称填写 <code>你的GitHub用户名.github.io</code>。例如：<code>Shawn-Peng1018.github.io</code>。</li>
+<li>设为 <strong>Public</strong>，然后点击 <strong>Create repository</strong>。</li>
+<li>打开仓库的 <strong>Settings → Pages</strong>，在 <strong>Build and deployment</strong> 中设置 <strong>Source: Deploy from a branch</strong>、<strong>Branch: master</strong>、目录 <code>/(root)</code>，点击 <strong>Save</strong>。若仓库实际分支叫 <code>main</code>，请选择 <code>main</code>。</li>
+</ol>
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.github.com/en/pages">GitHub Pages 官方文档</a></p>
+<h2 id="三、安装-Hexo-并初始化博客"><a href="#三、安装-Hexo-并初始化博客" class="headerlink" title="三、安装 Hexo 并初始化博客"></a>三、安装 Hexo 并初始化博客</h2><h3 id="1-安装-Hexo-CLI"><a href="#1-安装-Hexo-CLI" class="headerlink" title="1. 安装 Hexo CLI"></a>1. 安装 Hexo CLI</h3><p>打开 <strong>CMD 或 PowerShell</strong>，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g hexo-cli<br>hexo -v<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-初始化项目"><a href="#2-初始化项目" class="headerlink" title="2. 初始化项目"></a>2. 初始化项目</h3><p>先在资源管理器中创建一个用于保存博客的文件夹。本文示例路径为 <code>D:\桌面\Shawn-Peng1018.github.io</code>。</p>
+<p>如果该文件夹<strong>还没有初始化过</strong>，在 CMD 中运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bat"><span class="hljs-built_in">cd</span> /d D:\桌面<br>hexo init Shawn-Peng1018.github.io<br><span class="hljs-built_in">cd</span> Shawn-Peng1018.github.io<br>npm install<br></code></pre></td></tr></table></figure>
+
+<p>如果你已经完成了 Hexo 初始化，不要重复运行 <code>hexo init</code>。可以在资源管理器打开博客文件夹，在地址栏输入 <code>cmd</code> 并按回车，直接在该目录打开命令提示符；然后运行 <code>npm install</code>。</p>
+<h3 id="3-本地预览"><a href="#3-本地预览" class="headerlink" title="3. 本地预览"></a>3. 本地预览</h3><p>在博客项目根目录运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">关于如果重新打开cmd，一般是对应c盘，那如果根目录是在d盘，可以通过<br><span class="hljs-built_in">cd</span> /d &lt;folder&gt;    <span class="hljs-comment"># folder对应根目录路径，cd打开该文件</span><br>例如 <span class="hljs-built_in">cd</span> /d <span class="hljs-string">&quot;D:\桌面\Shawn-Peng1018.github.io&quot;</span><br>进行跳转<br></code></pre></td></tr></table></figure>
+
+<p>浏览器访问 <code>http://localhost:4000/</code>。看到 Hexo 初始页面表示本地预览成功。结束预览时回到终端按 <code>Ctrl+C</code>。</p>
+<p>常用命令：<code>hexo clean/ hexo c</code> 清除生成文件；<code>hexo g</code> 生成静态页面；<code>hexo s</code> 启动本地预览；<code>hexo d</code> 部署网站。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://hexo.io/docs/">Hexo 官方文档</a></p>
+<h2 id="四、安装并配置-Fluid"><a href="#四、安装并配置-Fluid" class="headerlink" title="四、安装并配置 Fluid"></a>四、安装并配置 Fluid</h2><h3 id="1-安装主题"><a href="#1-安装主题" class="headerlink" title="1. 安装主题"></a>1. 安装主题</h3><p>在博客项目根目录打开 <strong>CMD 或 PowerShell</strong>，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install --save hexo-theme-fluid<br></code></pre></td></tr></table></figure>
+
+<p>通过 npm 安装时，主题位于 <code>node_modules/hexo-theme-fluid/</code>，不一定会出现在 <code>themes/fluid/</code>，这是正常的。</p>
+<h3 id="2-指定主题和语言"><a href="#2-指定主题和语言" class="headerlink" title="2. 指定主题和语言"></a>2. 指定主题和语言</h3><p>用记事本或 VS Code 打开项目根目录的 <code>_config.yml</code>，设置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">theme:</span> <span class="hljs-string">fluid</span><br><span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-创建主题覆盖配置"><a href="#3-创建主题覆盖配置" class="headerlink" title="3. 创建主题覆盖配置"></a>3. 创建主题覆盖配置</h3><p>在博客根目录创建 <code>_config.fluid.yml</code>。可参考 <a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/guide/">Fluid 主题配置指南</a> 查找配置项。日常主题配置应修改 <code>_config.fluid.yml</code>；<code>node_modules/hexo-theme-fluid/_config.yml</code> 主要用来查看主题默认值，不建议直接编辑，因为重新安装主题可能覆盖修改。</p>
+<p>YAML 对缩进敏感：使用空格，不要使用 Tab；修改已有配置项，不要在文件末尾重复添加同名配置。</p>
+<h2 id="五、设置博客名称、首页标语和菜单"><a href="#五、设置博客名称、首页标语和菜单" class="headerlink" title="五、设置博客名称、首页标语和菜单"></a>五、设置博客名称、首页标语和菜单</h2><p>使用记事本或 VS Code 打开 <code>_config.fluid.yml</code>，找到已有配置后修改。</p>
+<h3 id="1-导航栏标题"><a href="#1-导航栏标题" class="headerlink" title="1. 导航栏标题"></a>1. 导航栏标题</h3><p>在 <code>navbar.blog_title</code> 设置标题，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">navbar:</span><br>  <span class="hljs-attr">blog_title:</span> <span class="hljs-string">&quot;Shawn Peng&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-首页标语"><a href="#2-首页标语" class="headerlink" title="2. 首页标语"></a>2. 首页标语</h3><p>在 <code>index.slogan.text</code> 设置首页标语，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">index:</span><br>  <span class="hljs-attr">slogan:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">text:</span> <span class="hljs-string">&quot;欢迎来到 Shawn Peng 的个人博客&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-导航菜单"><a href="#3-导航菜单" class="headerlink" title="3. 导航菜单"></a>3. 导航菜单</h3><p>在 <code>navbar.menu</code> 中配置首页、归档、分类、标签、关于等菜单项。先检查文件里的原有结构，再修改需要调整的菜单，不要重复添加一整段 <code>navbar</code>。</p>
+<h3 id="4-创建关于页面"><a href="#4-创建关于页面" class="headerlink" title="4. 创建关于页面"></a>4. 创建关于页面</h3><p>在博客根目录的 <strong>CMD 或 PowerShell</strong> 运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new page about<br></code></pre></td></tr></table></figure>
+
+<p>使用记事本或 VS Code 打开 <code>source/about/index.md</code>，填写内容：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br>title: 关于<br><span class="hljs-section">date: 2026-11-23 20:00:00</span><br><span class="hljs-section">---</span><br><br>你好，我是 Shawn Peng。这里记录我的学习、生活和项目经历。<br></code></pre></td></tr></table></figure>
+
+<h2 id="六、绑定自定义域名（可选）"><a href="#六、绑定自定义域名（可选）" class="headerlink" title="六、绑定自定义域名（可选）"></a>六、绑定自定义域名（可选）</h2><p>我使用腾讯云购买域名，并在 DNSPod 中解析。以下以 <code>shawnpeng.top</code> 为例。</p>
+<h3 id="1-DNSPod-添加解析"><a href="#1-DNSPod-添加解析" class="headerlink" title="1. DNSPod 添加解析"></a>1. DNSPod 添加解析</h3><p>在腾讯云 DNSPod 中打开 <code>shawnpeng.top</code> 的 <strong>记录管理</strong>，添加以下记录。GitHub 官方建议根域名配置四条 A 记录；如果 DNS 服务商套餐限制记录数量，按控制台允许的数量设置，并检查 GitHub Pages 的 DNS 状态。</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>类型</th>
+<th>记录值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@</code></td>
+<td>A</td>
+<td><code>185.199.109.153</code></td>
+</tr>
+<tr>
+<td><code>www</code></td>
+<td>CNAME</td>
+<td><code>Shawn-Peng1018.github.io</code></td>
+</tr>
+</tbody></table>
+<h3 id="2-GitHub-账号验证域名"><a href="#2-GitHub-账号验证域名" class="headerlink" title="2. GitHub 账号验证域名"></a>2. GitHub 账号验证域名</h3><p>在 GitHub 个人账号 <strong>Settings → Pages → Add a domain</strong> 添加 <code>shawnpeng.top</code>。GitHub 会提供 TXT 主机记录和值；在 DNSPod 添加相应 TXT 记录，等待解析生效后回到 GitHub 点击 <strong>Verify</strong>。看到 <strong>Verified</strong> 表示账号层面的验证完成。</p>
+<h3 id="3-在仓库-Pages-绑定域名"><a href="#3-在仓库-Pages-绑定域名" class="headerlink" title="3. 在仓库 Pages 绑定域名"></a>3. 在仓库 Pages 绑定域名</h3><p>打开博客仓库 <strong>Settings → Pages → Custom domain</strong>，输入 <code>shawnpeng.top</code> 并保存。</p>
+<h3 id="4-配置-Hexo"><a href="#4-配置-Hexo" class="headerlink" title="4. 配置 Hexo"></a>4. 配置 Hexo</h3><p>在项目根目录 <code>_config.yml</code> 中设置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">url:</span> <span class="hljs-string">https://shawnpeng.top</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br></code></pre></td></tr></table></figure>
+
+<p>在项目的 <code>source</code> 文件夹中新建无扩展名文件 <code>CNAME</code>，内容只有：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">shawnpeng.top<br></code></pre></td></tr></table></figure>
+
+<p>注意不要保存成 <code>CNAME.txt</code>。这样部署时域名文件会随生成的网站一起发布。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自定义域名</a></p>
+<h2 id="七、撰写并发布文章"><a href="#七、撰写并发布文章" class="headerlink" title="七、撰写并发布文章"></a>七、撰写并发布文章</h2><h3 id="1-创建文章"><a href="#1-创建文章" class="headerlink" title="1. 创建文章"></a>1. 创建文章</h3><p>在博客项目根目录的 <strong>CMD 或 PowerShell</strong> 中运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo new post <span class="hljs-string">&quot;我的第一篇博客&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>Hexo 会在 <code>source/_posts/</code> 中创建 Markdown 文件。使用记事本或 VS Code 编辑它，文章开头的 Front-matter 可以写标题、日期、分类和标签：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">我的第一篇博客</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-11-23 20:00:00</span><br><span class="hljs-attr">categories:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">随笔</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">博客</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-本地检查"><a href="#2-本地检查" class="headerlink" title="2. 本地检查"></a>2. 本地检查</h3><p>在项目根目录的终端运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean<br>hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
+
+<p>浏览器访问 <code>http://localhost:4000/</code>，检查排版、图片和链接。完成后回到终端按 <code>Ctrl+C</code>。</p>
+<h3 id="3-发布到-GitHub-Pages"><a href="#3-发布到-GitHub-Pages" class="headerlink" title="3. 发布到 GitHub Pages"></a>3. 发布到 GitHub Pages</h3><p>在博客项目根目录的 <strong>CMD 或 PowerShell</strong> 中运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo d<br></code></pre></td></tr></table></figure>
+
+<p>等待出现部署成功提示，再访问 <code>https://shawnpeng.top</code> 检查。以后更新文章后，可重复运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean<br>hexo g<br>hexo d<br></code></pre></td></tr></table></figure>
+
+<h2 id="八、常见问题"><a href="#八、常见问题" class="headerlink" title="八、常见问题"></a>八、常见问题</h2><h3 id="1-hexo-d-提示找不到-Git"><a href="#1-hexo-d-提示找不到-Git" class="headerlink" title="1. hexo d 提示找不到 Git"></a>1. <code>hexo d</code> 提示找不到 Git</h3><p>安装 Git 后重新打开终端，运行 <code>git --version</code> 检查。如果仍提示找不到，确认 Git 安装程序已将 Git 加入系统 PATH。</p>
+<h3 id="2-提示-Author-identity-unknown"><a href="#2-提示-Author-identity-unknown" class="headerlink" title="2. 提示 Author identity unknown"></a>2. 提示 <code>Author identity unknown</code></h3><p>在终端设置 Git 提交署名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;Shawn Peng&quot;</span><br>git config --global user.email <span class="hljs-string">&quot;你的GitHub邮箱&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-修改后网站没有变化"><a href="#3-修改后网站没有变化" class="headerlink" title="3. 修改后网站没有变化"></a>3. 修改后网站没有变化</h3><p>确认修改的是博客根目录中的配置文件；在终端重新运行 <code>hexo clean</code>、<code>hexo g</code>，本地预览确认后再运行 <code>hexo d</code>。浏览器可以按 <code>Ctrl+F5</code> 强制刷新。</p>
+<h3 id="4-YAML-缩进报错"><a href="#4-YAML-缩进报错" class="headerlink" title="4. YAML 缩进报错"></a>4. YAML 缩进报错</h3><p>只用空格，不用 Tab；子项比父项多缩进两个空格；同一配置项不要重复定义。报错行号通常能帮助定位出错位置。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>从安装环境、初始化 Hexo，到配置 Fluid、绑定域名和发布文章，过程里有不少细节，但逐项完成后，就能拥有一个可以持续更新的个人博客。之后我会继续用博客记录学习和生活中的收获。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js 官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git 官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/">Hexo 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid 主题仓库与安装说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/guide/">Fluid 配置指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/pages">GitHub Pages 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自定义域名说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/302">腾讯云 DNSPod 文档</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" class="category-chain-item">网站搭建</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/Fluid/" class="print-no-link">#Fluid</a>
+      
+        <a href="/tags/GitHub-Pages/" class="print-no-link">#GitHub Pages</a>
+      
+        <a href="/tags/%E5%8D%9A%E5%AE%A2blog%E6%90%AD%E5%BB%BA/" class="print-no-link">#博客blog搭建</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hexo + Fluid 搭建个人博客教程</div>
+      <div>https://shawnpeng.top/2026/11/23/Hexo-Fluid搭建个人博客教程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Shawn Peng</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年11月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/11/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="我的第一篇文章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">我的第一篇文章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/11/12/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Shawn-Peng1018/Shawn-Peng1018.github.io","repo-id":"R_kgDOVsCetw","category":"Announcements","category-id":"DIC_kwDOVsCet84DLa8N","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
