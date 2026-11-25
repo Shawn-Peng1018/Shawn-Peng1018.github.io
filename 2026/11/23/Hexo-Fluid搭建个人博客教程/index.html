@@ -26,8 +26,8 @@
 <meta property="og:site_name" content="Shawn Peng 的博客">
 <meta property="og:description" content="前言一直想拥有一个自己的博客，用来记录学习、生活和项目经验。经过一段时间的摸索以及ai的帮助，我用 Hexo、Fluid 和 GitHub Pages 搭建并发布了自己的博客。 本文记录 Windows 环境下从准备工具、创建 GitHub 仓库，到安装 Hexo、配置 Fluid、绑定域名和发布文章的过程。命令在 CMD 或 PowerShell 中运行；修改配置文件时使用记事本或 VS Cod">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-11-23T14:11:54.326Z">
-<meta property="article:modified_time" content="2026-11-23T14:35:38.752Z">
+<meta property="article:published_time" content="2026-11-23T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-11-25T04:43:42.847Z">
 <meta property="article:author" content="Shawn Peng">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Fluid">
@@ -319,7 +319,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-11-23 22:11" pubdate>
+        <time datetime="2026-11-23 20:00" pubdate>
           2026年11月23日 晚上
         </time>
       </span>
@@ -331,7 +331,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          6.3k 字
         
       </span>
     
@@ -342,7 +342,7 @@
         
         
         
-          33 分钟
+          53 分钟
         
       </span>
     
@@ -414,7 +414,36 @@
 <li>设为 <strong>Public</strong>，然后点击 <strong>Create repository</strong>。</li>
 <li>打开仓库的 <strong>Settings → Pages</strong>，在 <strong>Build and deployment</strong> 中设置 <strong>Source: Deploy from a branch</strong>、<strong>Branch: master</strong>、目录 <code>/(root)</code>，点击 <strong>Save</strong>。若仓库实际分支叫 <code>main</code>，请选择 <code>main</code>。</li>
 </ol>
-<p>参考：<a target="_blank" rel="noopener" href="https://docs.github.com/en/pages">GitHub Pages 官方文档</a></p>
+<h3 id="1-注册-GitHub-账号并配置-SSH-公钥"><a href="#1-注册-GitHub-账号并配置-SSH-公钥" class="headerlink" title="1. 注册 GitHub 账号并配置 SSH 公钥"></a>1. 注册 GitHub 账号并配置 SSH 公钥</h3><p>本节的 SSH 操作步骤参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">GitHub 配置 SSH Key 的步骤（大白话+包含原理解释）</a>，并按 Windows 的 CMD&#x2F;PowerShell 操作方式说明。SSH 通过本机私钥和添加到 GitHub 的公钥进行身份验证；私钥留在自己的电脑，不能上传或发给别人。</p>
+<h4 id="注册-GitHub-账号"><a href="#注册-GitHub-账号" class="headerlink" title="注册 GitHub 账号"></a>注册 GitHub 账号</h4><ol>
+<li>在浏览器打开 <a target="_blank" rel="noopener" href="https://github.com/signup">GitHub 注册页面</a>，按提示填写邮箱、密码和用户名。</li>
+<li>按页面要求完成人机验证，并到邮箱收取验证邮件，完成邮箱验证。</li>
+<li>登录 GitHub。后续仓库和 SSH 公钥都添加到这个账号。</li>
+</ol>
+<h4 id="检查本机是否已有-SSH-Key"><a href="#检查本机是否已有-SSH-Key" class="headerlink" title="检查本机是否已有 SSH Key"></a>检查本机是否已有 SSH Key</h4><p>打开 <strong>CMD 或 PowerShell</strong>，运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat"><span class="hljs-built_in">dir</span> &quot;<span class="hljs-variable">%USERPROFILE%</span>\.ssh&quot;<br></code></pre></td></tr></table></figure>
+
+<p>如果列表中已有成对的 <code>id_rsa</code> 和 <code>id_rsa.pub</code>，就可以使用已有密钥，跳过生成步骤。<code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。若已有其他名称的密钥，不要覆盖或删除；确认其公钥已经添加到 GitHub，也可以继续使用之前验证成功的密钥。</p>
+<h4 id="没有密钥时生成-RSA-密钥"><a href="#没有密钥时生成-RSA-密钥" class="headerlink" title="没有密钥时生成 RSA 密钥"></a>没有密钥时生成 RSA 密钥</h4><p>在 <strong>CMD 或 PowerShell</strong> 中运行（将邮箱替换成自己 GitHub 账号使用的邮箱）：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">ssh-keygen -t rsa -C &quot;你的GitHub邮箱&quot;<br></code></pre></td></tr></table></figure>
+
+<p>出现 <code>Enter file in which to save the key</code> 时按 Enter 使用默认位置 <code>C:\Users\你的Windows用户名\.ssh\id_rsa</code>。出现 passphrase 提示时，可以设置一个密钥口令并再次输入确认，也可以按 Enter 留空。若提示目标文件已存在，先不要覆盖；按 <code>Ctrl+C</code> 取消，检查能否直接使用现有密钥。</p>
+<h4 id="复制公钥并添加到-GitHub"><a href="#复制公钥并添加到-GitHub" class="headerlink" title="复制公钥并添加到 GitHub"></a>复制公钥并添加到 GitHub</h4><p>在 CMD 或 PowerShell 中运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat"><span class="hljs-built_in">type</span> &quot;<span class="hljs-variable">%USERPROFILE%</span>\.ssh\id_rsa.pub&quot;<br></code></pre></td></tr></table></figure>
+
+<p>复制显示出来的<strong>整行公钥</strong>。不要复制或分享没有 <code>.pub</code> 后缀的 <code>id_rsa</code> 私钥。</p>
+<p>然后在浏览器登录 GitHub，依次打开 <strong>右上角头像 → Settings → SSH and GPG keys → New SSH key</strong>：</p>
+<ol>
+<li><strong>Title</strong> 填一个便于识别的名称，例如 <code>My Windows PC</code>。</li>
+<li><strong>Key type</strong> 选择 <code>Authentication Key</code>。</li>
+<li>将刚才复制的公钥粘贴到 <strong>Key</strong> 框，点击 <strong>Add SSH key</strong> 保存。</li>
+</ol>
+<h4 id="测试-SSH-连接"><a href="#测试-SSH-连接" class="headerlink" title="测试 SSH 连接"></a>测试 SSH 连接</h4><p>回到 CMD 或 PowerShell，运行：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+
+<p>第一次连接可能询问是否继续，确认主机为 <code>github.com</code> 后输入 <code>yes</code>。若看到 <code>Hi 你的用户名! You&#39;ve successfully authenticated</code>，说明认证成功。之后 Hexo 部署配置中的仓库地址应使用 SSH 格式，例如 <code>git@github.com:Shawn-Peng1018/Shawn-Peng1018.github.io.git</code>。</p>
+<p>注意：SSH Key 解决的是 GitHub 身份认证；<code>git config user.name</code> 和 <code>git config user.email</code> 是提交记录的作者署名，两者作用不同。</p>
+<p>具体参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">这篇博文</a></p>
 <h2 id="三、安装-Hexo-并初始化博客"><a href="#三、安装-Hexo-并初始化博客" class="headerlink" title="三、安装 Hexo 并初始化博客"></a>三、安装 Hexo 并初始化博客</h2><h3 id="1-安装-Hexo-CLI"><a href="#1-安装-Hexo-CLI" class="headerlink" title="1. 安装 Hexo CLI"></a>1. 安装 Hexo CLI</h3><p>打开 <strong>CMD 或 PowerShell</strong>，运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g hexo-cli<br>hexo -v<br></code></pre></td></tr></table></figure>
 
@@ -491,11 +520,38 @@
 <p>Hexo 会在 <code>source/_posts/</code> 中创建 Markdown 文件。使用记事本或 VS Code 编辑它，文章开头的 Front-matter 可以写标题、日期、分类和标签：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">我的第一篇博客</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-11-23 20:00:00</span><br><span class="hljs-attr">categories:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">随笔</span><br><span class="hljs-attr">tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">博客</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="2-本地检查"><a href="#2-本地检查" class="headerlink" title="2. 本地检查"></a>2. 本地检查</h3><p>在项目根目录的终端运行：</p>
+<p>保存时确认文件扩展名为 <code>.md</code>，并在 Front-matter 的 <code>---</code> 分隔线后开始写正文。标题、分类、标签属于文章元数据，不要放在正文代码围栏里。</p>
+<h3 id="2-在正文中插入图片"><a href="#2-在正文中插入图片" class="headerlink" title="2. 在正文中插入图片"></a>2. 在正文中插入图片</h3><p>本文采用 Hexo 的 <code>source</code> 静态资源目录保存图片。创建一个统一的图片目录，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">博客项目目录/<br>└── source/<br>    └── img/<br>        └── hexo-fluid/<br>            ├── github-repository.png<br>            └── dns-records.png<br></code></pre></td></tr></table></figure>
+
+<p>操作方法：</p>
+<ol>
+<li><p>在资源管理器中打开博客项目的 <code>source</code> 文件夹。</p>
+</li>
+<li><p>新建 <code>img</code> 文件夹，再按文章或主题建立子文件夹，例如 <code>hexo-fluid</code>。</p>
+</li>
+<li><p>将图片复制到该子文件夹。建议文件名使用英文、数字和短横线，避免空格及特殊符号；确认扩展名真实存在，如 <code>.png</code>、<code>.jpg</code> 或 <code>.webp</code>。</p>
+</li>
+<li><p>在 Markdown 正文希望图片出现的位置写：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">GitHub 仓库页面</span>](<span class="hljs-link">/img/hexo-fluid/github-repository.png</span>)<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>路径从 <code>source</code> 目录开始写：<code>source/img/hexo-fluid/github-repository.png</code> 对应网页引用 <code>/img/hexo-fluid/github-repository.png</code>。方括号里是图片说明文字，圆括号里是图片路径。</p>
+<p>如果图片路径含空格，浏览器或 Markdown 解析可能出问题。最简单的做法是将文件重命名为 <code>about-me.jpg</code>，然后写 <code>![关于我](/img/about-me.jpg)</code>。</p>
+<h4 id="设置文章封面图"><a href="#设置文章封面图" class="headerlink" title="设置文章封面图"></a>设置文章封面图</h4><p>Fluid 的文章封面图通常通过 Front-matter 的 <code>index_img</code> 设置。图片仍放在 <code>source</code> 下，例如 <code>source/img/hexo-fluid/cover.jpg</code>，然后在文章开头的 YAML 区域添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">index_img:</span> <span class="hljs-string">/img/hexo-fluid/cover.jpg</span><br></code></pre></td></tr></table></figure>
+
+<p><code>index_img</code> 是封面图；正文中的 <code>![说明文字](/img/路径/图片.png)</code> 是内容图。两者可以引用同一张图片，也可以分别使用不同图片。若当前 Fluid 版本配置有差异，以该版本配置文档为准。</p>
+<h4 id="本地检查图片"><a href="#本地检查图片" class="headerlink" title="本地检查图片"></a>本地检查图片</h4><p>在博客项目根目录的 <strong>CMD 或 PowerShell</strong> 中运行 <code>hexo clean</code>、<code>hexo g</code>、<code>hexo s</code>，打开 <code>http://localhost:4000/</code> 检查文章。若图片不显示，可直接在浏览器打开图片地址，例如 <code>http://localhost:4000/img/hexo-fluid/github-repository.png</code>：</p>
+<ul>
+<li>能打开图片：路径存在，检查 Markdown 是否写错或浏览器缓存。</li>
+<li>仍然 404：检查图片是否在 <code>source/img/</code> 下，路径大小写、文件名和扩展名是否完全一致。</li>
+</ul>
+<p>文章图片不需要放进 <code>node_modules</code> 或 <code>themes</code> 目录。放在 <code>source</code> 下，Hexo 生成和部署时会复制到站点。</p>
+<h3 id="3-本地检查"><a href="#3-本地检查" class="headerlink" title="3. 本地检查"></a>3. 本地检查</h3><p>在项目根目录的终端运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean<br>hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
 
 <p>浏览器访问 <code>http://localhost:4000/</code>，检查排版、图片和链接。完成后回到终端按 <code>Ctrl+C</code>。</p>
-<h3 id="3-发布到-GitHub-Pages"><a href="#3-发布到-GitHub-Pages" class="headerlink" title="3. 发布到 GitHub Pages"></a>3. 发布到 GitHub Pages</h3><p>在博客项目根目录的 <strong>CMD 或 PowerShell</strong> 中运行：</p>
+<h3 id="4-发布到-GitHub-Pages"><a href="#4-发布到-GitHub-Pages" class="headerlink" title="4. 发布到 GitHub Pages"></a>4. 发布到 GitHub Pages</h3><p>在博客项目根目录的 <strong>CMD 或 PowerShell</strong> 中运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo d<br></code></pre></td></tr></table></figure>
 
 <p>等待出现部署成功提示，再访问 <code>https://shawnpeng.top</code> 检查。以后更新文章后，可重复运行：</p>
@@ -516,6 +572,7 @@
 <li><a target="_blank" rel="noopener" href="https://fluid-dev.github.io/hexo-fluid-docs/guide/">Fluid 配置指南</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.github.com/en/pages">GitHub Pages 官方文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自定义域名说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42310154/article/details/118340458">注册 GitHub 账号以及配置 SSH 公钥</a></li>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/302">腾讯云 DNSPod 文档</a></li>
 </ul>
 
